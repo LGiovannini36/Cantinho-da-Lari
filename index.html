@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantinho da Lari</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="loading"> 
+
+
+    <div class="container">
+        <img src="larissa.png" alt="Ilustração da Lari" class="illustration">
+
+        <header>
+            <h1>Cantinho da Lari</h1>
+            <p id="contador-dias" class="contador">Calculando dias especiais...</p>
+        </header>
+
+        <main>
+            <section class="card">
+                <h2>✨ Frase do Dia ✨</h2>
+                <p id="frase-do-dia-texto">Carregando uma frase especial para você...</p>
+            </section>
+
+            <section class="card">
+                <h2>💧 Cantinho dos lembretes 💊</h2>
+                <div class="lembrete-item">
+                    <p>Já tomou seu Lavitão rosinha de menina hoje?</p>
+                    <button class="btn btn-positivo">Positivo, capitão brocha 🫡</button>
+                    <button class="btn btn-ops">Ops</button>
+                    <div class="lembrete-feedback"></div>
+                </div>
+                <div class="lembrete-item">
+                    <p>Essa grande gostosa se hidratou bem?</p>
+                    <button class="btn btn-positivo">Positivo, capitão brocha 🫡</button>
+                    <button class="btn btn-ops">Ops</button>
+                    <div class="lembrete-feedback"></div>
+                </div>
+                 <div class="lembrete-item">
+                    <p>habemus um dia de alimentação boa? Já deixamos um alimento alimentício na bolsa pra amanhã?</p>
+                    <button class="btn btn-positivo">Positivo, capitão brocha 🫡</button>
+                    <button class="btn btn-ops">Ops</button>
+                    <div class="lembrete-feedback"></div>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2>💖 Cantinho das Lembranças 💖</h2>
+                <div id="lembrancas-inline-container"></div>
+                
+                <div class="sugestao-container">
+    <hr> <h3>Gostaria de adicionar uma lembrança?</h3>
+    <p>Escreva aqui um momento especial que você quer adicionar ao nosso baú!</p>
+    
+    <input type="text" id="sugestao-data" placeholder="Data da lembrança (ex: Outubro de 2024)">
+    <input type="text" id="sugestao-titulo" placeholder="Um título para o momento">
+
+    <textarea id="sugestao-textarea" placeholder="Agora descreva o que aconteceu..."></textarea>
+    <button id="btn-enviar-sugestao" class="btn">Salvar nova lembrança</button>
+    <div id="sugestao-feedback" class="feedback-final"></div>
+</div>
+            </section>
+
+            <section class="card">
+                <h2>Cantinho do coisômetro 😶</h2>
+                <label for="coiso-level">Como está a melhora do coisado hoje?</label>
+                <input type="number" id="coiso-level" min="0" max="100" placeholder="De 0 a 100%">
+                <div id="coiso-message" class="coiso-feedback"></div>
+                <textarea id="caixa-desabafo" placeholder="Agora pode desabafar sobre o que aconteceu..."></textarea>
+                <button id="btn-descoisar" class="btn">Descoisar</button>
+            </section>
+
+            <section class="card">
+                <h2>🎵 Cantinho Musical 🎵</h2>
+                <p>Sequência de pedrada pra minha princesa!</p>
+                <iframe allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen="" frameborder="0" height="152" loading="lazy" src="https://open.spotify.com/embed/playlist/5xeFAD0g9lOLgthF3qvK7C?utm_source=generator" style="border-radius:12px" width="100%">
+</iframe>
+<div class="composicoes-container">
+    <hr> <h3>Cantinho das composições 🎼🩷</h3>
+    <p>Músicas que lembram você são incríveis e melhor que elas são as músicas feitas para você. No seu cantinho musical não poderiam faltar as músicas que fiz especialmente para você.</p>
+
+    <div class="song-item">
+        <span class="song-title">Meu Lugar</span>
+        <button id="play-meu-lugar" class="btn-play-heart" aria-label="Tocar Meu Lugar">❤️</button>
+    </div>
+
+    <div class="song-item">
+        <span class="song-title">Porta Retrato</span>
+        <button id="play-porta-retrato" class="btn-play-heart" aria-label="Tocar Porta Retrato">❤️</button>
+    </div>
+</div>
+
+            </section>
+            <section class="card">
+    <h2>🎲 Cantinho da aLARIeatoriedade 🎲</h2>
+    <p>Uma das coisas mais encantadoras em você, é a sua espontaneidade, sua autenticidade e seu jeitinho único. Bem vinda ao seu cantinho aLarieatório!</p>
+
+    <div class="aleatorio-item">
+        <h3>Gênero musical aLarieatório do dia</h3>
+        <button id="btn-musica" class="btn-aleatorio btn-color-1">Girar a roleta musical!</button>
+        <div id="resultado-musica" class="resultado-aleatorio"></div>
+    </div>
+
+    <div class="aleatorio-item">
+        <h3>Conteúdos aLarieatórios pra dormir</h3>
+        <button id="btn-dormir" class="btn-aleatorio btn-color-2">Sortear soninho!</button>
+        <div id="resultado-dormir" class="resultado-aleatorio"></div>
+    </div>
+
+    <div class="aleatorio-item">
+        <h3>Curiosidades aLarieatórias</h3>
+        <button id="btn-curiosidade" class="btn-aleatorio btn-color-3">Me conte algo novo!</button>
+        <div id="resultado-curiosidade" class="resultado-aleatorio"></div>
+    </div>
+
+    <div class="aleatorio-item">
+        <h3>Debates aLarieatórios</h3>
+        <button id="btn-debate" class="btn-aleatorio btn-color-4">Gerar uma discussão!</button>
+        <div id="resultado-debate" class="resultado-aleatorio"></div>
+    </div>
+
+    <div class="aleatorio-item">
+        <h3>TOP 3 aLarieatório</h3>
+        <button id="btn-top3" class="btn-aleatorio btn-color-5">Criar um ranking!</button>
+        <div id="resultado-top3" class="resultado-aleatorio"></div>
+    </div>
+</section>
+
+        </main>
+
+        <footer>
+            <p>Feito cuidadosamente com amor para pessoa mais especial do mundo</p>
+            <span id="coracao-footer" class="coracao">❤️</span>
+            <p id="coracao-feedback" class="feedback-final"></p>
+        </footer>
+    </div>
+
+    <form name="lembretes" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lembretes" />
+      <p class="hidden">
+        <label>Não preencha isto se você for humano: <input name="bot-field" /></label>
+      </p>
+      <input type="hidden" name="lembrete" />
+      <input type="hidden" name="resposta" />
+    </form>
+
+    <form name="sugestao-lembranca" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="sugestao-lembranca" />
+        <p class="hidden"><label>Não preencha: <input name="bot-field" /></label></p>
+        <input type="hidden" name="sugestao" />
+    </form>
+    <form name="coisometro" netlify netlify-honeypot="bot-field" hidden>
+        <input type="hidden" name="form-name" value="coisometro" />
+        <p class="hidden"><label>Não preencha: <input name="bot-field" /></label></p>
+        <input type="hidden" name="porcentagem" />
+        <input type="hidden" name="desabafo" />
+    </form>
+<audio id="som-positivo" src="som_positivo.mp3" preload="auto"></audio>
+<audio id="som-ops" src="som_ops.mp3" preload="auto"></audio>
+
+    <form name="lembretes" netlify ...>
+      <audio id="audio-meu-lugar" src="meu_lugar.mp3"></audio>
+<audio id="audio-porta-retrato" src="porta_retrato.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
