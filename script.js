@@ -59,113 +59,19 @@ window.addEventListener('DOMContentLoaded', () => {
     });
     
 
-    // --- Início da Seção para Substituir ---
-
-// --- SEÇÃO NOSSAS LEMBRANÇAS (AGORA 100% DINÂMICA) ---
-
-// Pega os elementos do HTML que vamos usar
-const lembrancasContainer = document.getElementById('lembrancas-inline-container');
-const btnEnviarSugestao = document.getElementById('btn-enviar-sugestao');
-const sugestaoDataInput = document.getElementById('sugestao-data');
-const sugestaoTituloInput = document.getElementById('sugestao-titulo');
-const sugestaoTextarea = document.getElementById('sugestao-textarea');
-const sugestaoFeedbackEl = document.getElementById('sugestao-feedback');
-
-// Função para CRIAR o HTML de uma única lembrança
-const criarElementoLembranca = (memoria) => {
-    const itemEl = document.createElement('div');
-    itemEl.classList.add('lembranca-item');
-    itemEl.innerHTML = `
-        <p class="data">${memoria.data}</p>
-        <h3>${memoria.titulo}</h3>
-        <p>${memoria.descricao}</p>
-    `;
-    return itemEl;
-};
-
-// Função para CARREGAR e MOSTRAR todas as lembranças do banco de dados
-const carregarLembrancas = async () => {
-    // Mostra uma mensagem de carregamento
-    lembrancasContainer.innerHTML = '<p>Buscando nossas memórias no baú...</p>';
-
-    try {
-        // Chama nossa função de listar
-        const response = await fetch('/.netlify/functions/listar-lembrancas');
-        const lembrancas = await response.json();
-
-        // Limpa a mensagem de carregamento
-        lembrancasContainer.innerHTML = '';
-
-        if (response.ok) {
-            // Se a lista estiver vazia, mostra uma mensagem
-            if (lembrancas.length === 0) {
-                lembrancasContainer.innerHTML = '<p>Nosso baú de memórias ainda está vazio. Adicione a primeira!</p>';
-            } else {
-                // Adiciona cada lembrança na página
-                lembrancas.forEach(memoria => {
-                    const elemento = criarElementoLembranca(memoria);
-                    lembrancasContainer.appendChild(elemento);
-                });
-            }
-        } else {
-            throw new Error(lembrancas.error);
-        }
-    } catch (error) {
-        console.error("Erro ao carregar lembranças:", error);
-        lembrancasContainer.innerHTML = '<p style="color: red;">Erro ao buscar as memórias. Tente recarregar a página.</p>';
-    }
-};
-
-// Lógica do botão para ADICIONAR uma nova lembrança
-btnEnviarSugestao.addEventListener('click', async () => {
-    // Pega os valores dos três campos de texto
-    const data = sugestaoDataInput.value;
-    const titulo = sugestaoTituloInput.value;
-    const descricao = sugestaoTextarea.value;
-
-    // Validação simples
-    if (!data.trim() || !titulo.trim() || !descricao.trim()) {
-        sugestaoFeedbackEl.textContent = "Por favor, preencha todos os campos da lembrança!";
-        return;
-    }
-
-    sugestaoFeedbackEl.textContent = 'Salvando no nosso baú...';
-
-    try {
-        // Chama nossa função de adicionar, enviando os dados no corpo da requisição
-        const response = await fetch('/.netlify/functions/adicionar-lembranca', {
-            method: 'POST',
-            body: JSON.stringify({ data, titulo, descricao })
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error);
-        }
-
-        // Se deu tudo certo:
-        sugestaoFeedbackEl.textContent = "Lembrança salva com sucesso! ❤️";
-        // Limpa os campos
-        sugestaoDataInput.value = '';
-        sugestaoTituloInput.value = '';
-        sugestaoTextarea.value = '';
-
-        // Recarrega a lista de memórias para mostrar a nova imediatamente!
-        await carregarLembrancas();
-
-    } catch (error) {
-        console.error("Erro ao salvar lembrança:", error);
-        sugestaoFeedbackEl.textContent = 'Ops, falha ao salvar. Tente novamente.';
-    }
-});
-
-
-// --- O restande do seu código (Coisômetro, Aleatoriedade, etc.) continua aqui... ---
-
-// Finalmente, chama a função para carregar as lembranças assim que a página abre
-carregarLembrancas();
-
-// --- Fim da Seção para Substituir ---
+    // --- SEÇÃO NOSSAS LEMBRANÇAS ---
+    const memorias = [ { data: "Outubro de 2024", titulo: "O Início de Tudo", descricao: "Aqui tudo começou, quem diria que um \"boa noite\" mudaria tanto nossas vidas. Mensalmente teremos as nossas melhores lembranças registradas aqui, nesse cantinho, pra nunca esquecer quão valiosa é a nossa história." } ];
+    const lembrancasContainer = document.getElementById('lembrancas-inline-container');
+    memorias.forEach(memoria => {
+        const itemEl = document.createElement('div');
+        itemEl.classList.add('lembranca-item');
+        itemEl.innerHTML = `
+            <p class="data">${memoria.data}</p>
+            <h3>${memoria.titulo}</h3>
+            <p>${memoria.descricao}</p>
+        `;
+        lembrancasContainer.appendChild(itemEl);
+    });
 
 
     // --- SEÇÃO DO COISÔMETRO ---
@@ -190,6 +96,23 @@ carregarLembrancas();
             enviarNotificacao(dadosParaEnviar);
         }
         caixaDesabafo.value = '';
+    });
+
+
+    // --- SEÇÃO DE SUGESTÃO DE LEMBRANÇA ---
+    const btnEnviarSugestao = document.getElementById('btn-enviar-sugestao');
+    const sugestaoTextarea = document.getElementById('sugestao-textarea');
+    const sugestaoFeedbackEl = document.getElementById('sugestao-feedback');
+    btnEnviarSugestao.addEventListener('click', () => {
+        const sugestaoTexto = sugestaoTextarea.value;
+        if (!sugestaoTexto.trim()) {
+            sugestaoFeedbackEl.textContent = "Você precisa escrever uma lembrança primeiro, meu amor!";
+            return;
+        }
+        const dadosParaEnviar = { "form-name": "sugestao-lembranca", "sugestao": sugestaoTexto };
+        enviarNotificacao(dadosParaEnviar);
+        sugestaoTextarea.value = '';
+        sugestaoFeedbackEl.textContent = "Lembrança enviada! O princeso vai dar uma olhada com todo o carinho. ❤️";
     });
 
 
