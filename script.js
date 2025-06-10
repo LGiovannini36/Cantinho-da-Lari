@@ -180,12 +180,12 @@ window.addEventListener('DOMContentLoaded', () => {
     const youtubePlayer = document.getElementById('youtube-player');
     const btnRoletaMeme = document.getElementById('btn-roleta-meme');
     const memeLinks = [
-        'https://www.youtube.com/watch?v=j5a0jTc9S10',
-        'https://www.youtube.com/watch?v=H72CKUZMF9o',
-        'https://www.youtube.com/shorts/JYgZc4MsLjE',
-        'https://www.youtube.com/watch?v=SRmKWApTDqc',
-        'https://www.youtube.com/watch?v=-CtOOVsEwss',
-        'https://www.youtube.com/watch?v=8l_oEpXIurw' // Vídeo de teste que sabemos que funciona
+        'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv',
+        'https://www.youtube.com/watch?v=DcZHkFBLGZc',
+        'https://www.youtube.com/watch?v=YCsg_It_-Q8',
+        'https://www.youtube.com/watch?v=yp6lJSFmMMc',
+        'https://www.youtube.com/watch?v=GI3rKNjQQig',
+        'https://www.youtube.com/shorts/JYypuI73kiU' // Vídeo de teste que sabemos que funciona
     ];
     function extrairIdDoYoutube(url) {
         const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
