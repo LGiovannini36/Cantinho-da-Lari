@@ -211,7 +211,7 @@ btnRoletaMeme.addEventListener('click', () => {
 
     // Se um ID válido foi encontrado, atualiza o player
     if (videoId) {
-        const novaUrl = `https://www.youtube.com/embed/$${videoId}?autoplay=1`;
+        const novaUrl = `https://www.youtube.com/embed/$${videoId}?autoplay=1&origin=https://cantinhodalari.blog.br`;
         youtubePlayer.src = novaUrl;
     } else {
         console.error("Não foi possível extrair o ID do vídeo do link:", linkSorteado);
