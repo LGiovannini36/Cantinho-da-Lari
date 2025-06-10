@@ -186,11 +186,11 @@ const btnRoletaMeme = document.getElementById('btn-roleta-meme');
 
 // 2. Nosso novo banco de dados com os links completos
 const memeLinks = [
-    'https://www.youtube.com/watch?v=j5a0jTc9S10',
-    'https://www.youtube.com/watch?v=H72CKUZMF9o',
-    'https://www.youtube.com/watch?v=JYgZc4MsLjE',
-    'https://www.youtube.com/watch?v=SRmKWApTDqc',
-    'https://www.youtube.com/watch?v=-CtOOVsEwss'
+    'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv',
+    'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv',
+    'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv',
+    'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv',
+    'https://youtube.com/shorts/wjmEYCaR5hI?si=ElzXO1CD6FpwYUiv'
     // Adicione mais links completos aqui!
 ];
 
