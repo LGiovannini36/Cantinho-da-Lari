@@ -184,6 +184,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'https://www.youtube.com/watch?v=DcZHkFBLGZc',
         'https://www.youtube.com/watch?v=YCsg_It_-Q8',
         'https://www.youtube.com/watch?v=yp6lJSFmMMc',
+        'https://youtu.be/LgRqYh7Aivg?si=o0-EQDPgTdMOgiO-',
         'https://www.youtube.com/watch?v=GI3rKNjQQig',
         'https://www.youtube.com/shorts/JYypuI73kiU' // Vídeo de teste que sabemos que funciona
     ];
