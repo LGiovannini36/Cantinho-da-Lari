@@ -355,3 +355,26 @@ body {
     transform: scale(1.2);
     color: var(--cor-principal); /* Rosa mais forte ao passar o mouse */
 }
+/* --- ESTILOS PARA O CANTINHO DOS MEMES --- */
+
+/* Deixa o vídeo responsivo (mantém a proporção 16:9) */
+.video-responsive {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* Proporção 16:9 (9 / 16 = 0.5625) */
+    margin: 25px 0;
+    border-radius: var(--borda-radius);
+}
+
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
