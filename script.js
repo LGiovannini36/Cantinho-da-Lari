@@ -174,5 +174,35 @@ window.addEventListener('DOMContentLoaded', () => {
     // --- AJUSTE FINAL DE EXPERIÊNCIA DO USUÁRIO ---
     // Este é o último comando a ser executado, revelando a página.
     document.body.classList.remove('loading');
+// --- Início da Seção para Substituir ---
 
+// --- SEÇÃO DO CANTINHO DOS MEMES (VERSÃO ROLETA) ---
+    
+// 1. Captura dos elementos do HTML
+const youtubePlayer = document.getElementById('youtube-player');
+const btnRoletaMeme = document.getElementById('btn-roleta-meme');
+
+// 2. Nosso "banco de dados" de memes. Adicione quantos IDs de vídeos do YouTube você quiser aqui!
+const memeVideoIds = [
+    'j5a0jTc9S10', // Calma, Calabreso
+    'M1p52z6XEmI', // Bora, Bill!
+    'jGrGN7D22jU', // Caneta Azul
+    'KOLFbM9v6gA', // Valeu, Natalina!
+    'videoseries?list=PL3-s5nJ9_1N2Mh_gSbt23lk6_o2f4j24e' // Tapa na goxtosa
+    // Adicione mais IDs aqui, separados por vírgula
+];
+
+// 3. Adiciona a função de clique para o botão da roleta
+btnRoletaMeme.addEventListener('click', () => {
+    // Sorteia um ID aleatório da nossa lista
+    const idSorteado = memeVideoIds[Math.floor(Math.random() * memeVideoIds.length)];
+
+    // Constrói a nova URL do vídeo para tocar automaticamente
+    const novaUrl = `https://www.youtube.com/embed/$${idSorteado}?autoplay=1`;
+
+    // Atualiza o player do YouTube com o vídeo sorteado
+    youtubePlayer.src = novaUrl;
+});
+
+// --- Fim da Seção para Substituir ---
 });
