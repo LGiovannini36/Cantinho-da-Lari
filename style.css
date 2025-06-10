@@ -58,6 +58,7 @@ header h1 {
 
 /* Estilo Padrão para todos os Cards */
 .card {
+    position: relative; /* Adicionado para posicionar o botão de retorno */
     background-color: var(--cor-card);
     padding: 25px;
     border-radius: var(--borda-radius);
@@ -413,4 +414,36 @@ html {
     background-color: var(--cor-principal);
     color: white;
     transform: translateY(-2px);
+}
+/* --- ESTILOS PARA O BOTÃO VOLTAR AO TOPO --- */
+
+.btn-voltar-topo {
+    position: absolute; /* Posição absoluta em relação ao card */
+    bottom: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background-color: #f1f1f1;
+    color: var(--cor-principal);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0.7; /* Começa um pouco transparente */
+}
+
+.btn-voltar-topo:hover {
+    background-color: var(--cor-principal);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    opacity: 1; /* Fica totalmente opaco ao passar o mouse */
+}
+
+.btn-voltar-topo svg {
+    width: 20px;
+    height: 20px;
 }
