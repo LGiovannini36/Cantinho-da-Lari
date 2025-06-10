@@ -378,3 +378,39 @@ body {
     border: none;
 }
 
+/* --- ESTILOS PARA O MENU DE NAVEGAÇÃO --- */
+
+/* Adiciona a rolagem suave para a página inteira */
+html {
+    scroll-behavior: smooth;
+}
+
+.navigation-menu {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas menores */
+    justify-content: center;
+    gap: 10px; /* Espaço entre os botões */
+    margin-bottom: 30px; /* Espaço abaixo do menu */
+    padding: 10px 0;
+    border-bottom: 1px solid #fde7f3;
+}
+
+.nav-button {
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color: var(--cor-principal);
+    border: 2px solid var(--cor-principal);
+    padding: 8px 15px;
+    border-radius: 50px; /* Deixa os botões em formato de pílula */
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-button:hover {
+    background-color: var(--cor-principal);
+    color: white;
+    transform: translateY(-2px);
+}
