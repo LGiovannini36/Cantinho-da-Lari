@@ -176,48 +176,32 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('loading');
 // --- Início da Seção para Substituir ---
 
-// --- Início da Seção para Substituir ---
-
-// --- SEÇÃO DO CANTINHO DOS MEMES (VERSÃO ROLETA COM LINKS COMPLETOS) ---
-    
-// 1. Captura dos elementos do HTML
-const youtubePlayer = document.getElementById('youtube-player');
-const btnRoletaMeme = document.getElementById('btn-roleta-meme');
-
-// 2. Nosso novo banco de dados com os links completos
-const memeLinks = [
-    'https://www.youtube.com/watch?v=8l_oEpXIurw',
-    'https://www.youtube.com/watch?v=8l_oEpXIurw',
-    'https://www.youtube.com/watch?v=8l_oEpXIurw',
-    'https://www.youtube.com/watch?v=8l_oEpXIurw',
-    'https://www.youtube.com/watch?v=8l_oEpXIurw'
-    // Adicione mais links completos aqui!
-];
-
-// 3. A "Função Mágica" que extrai o ID de qualquer link do YouTube
-function extrairIdDoYoutube(url) {
-    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
-    const match = url.match(regex);
-    return match ? match[1] : null;
-}
-
-// 4. A nova lógica para o botão da roleta
-btnRoletaMeme.addEventListener('click', () => {
-    // Sorteia um LINK completo da nossa lista
-    const linkSorteado = memeLinks[Math.floor(Math.random() * memeLinks.length)];
-
-    // Usa nossa função mágica para extrair apenas o ID do vídeo
-    const videoId = extrairIdDoYoutube(linkSorteado);
-
-    // Se um ID válido foi encontrado, atualiza o player
-    if (videoId) {
-        const novaUrl = `https://www.youtube.com/embed/$${videoId}?autoplay=1&origin=https://cantinhodalari.blog.br`;
-        youtubePlayer.src = novaUrl;
-    } else {
-        console.error("Não foi possível extrair o ID do vídeo do link:", linkSorteado);
-        // Opcional: você pode mostrar uma mensagem de erro para a Lari aqui se quiser.
+// --- SEÇÃO DO CANTINHO DOS MEMES (VERSÃO ROLETA CORRIGIDA) ---
+    const youtubePlayer = document.getElementById('youtube-player');
+    const btnRoletaMeme = document.getElementById('btn-roleta-meme');
+    const memeLinks = [
+        'https://www.youtube.com/watch?v=j5a0jTc9S10',
+        'https://www.youtube.com/watch?v=H72CKUZMF9o',
+        'https://www.youtube.com/shorts/JYgZc4MsLjE',
+        'https://www.youtube.com/watch?v=SRmKWApTDqc',
+        'https://www.youtube.com/watch?v=-CtOOVsEwss',
+        'https://www.youtube.com/watch?v=8l_oEpXIurw' // Vídeo de teste que sabemos que funciona
+    ];
+    function extrairIdDoYoutube(url) {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
+        const match = url.match(regex);
+        return match ? match[1] : null;
     }
-});
+    btnRoletaMeme.addEventListener('click', () => {
+        const linkSorteado = memeLinks[Math.floor(Math.random() * memeLinks.length)];
+        const videoId = extrairIdDoYoutube(linkSorteado);
+        if (videoId) {
+            const novaUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&origin=https://antinhodalari.blog.br`;
+            youtubePlayer.src = novaUrl;
+        } else {
+            console.error("Não foi possível extrair o ID do vídeo do link:", linkSorteado);
+        }
+    });
 
 // --- Fim da Seção para Substituir ---
 });
