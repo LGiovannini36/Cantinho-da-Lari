@@ -176,32 +176,47 @@ window.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('loading');
 // --- Início da Seção para Substituir ---
 
-// --- SEÇÃO DO CANTINHO DOS MEMES (VERSÃO ROLETA) ---
+// --- Início da Seção para Substituir ---
+
+// --- SEÇÃO DO CANTINHO DOS MEMES (VERSÃO ROLETA COM LINKS COMPLETOS) ---
     
 // 1. Captura dos elementos do HTML
 const youtubePlayer = document.getElementById('youtube-player');
 const btnRoletaMeme = document.getElementById('btn-roleta-meme');
 
-// 2. Nosso "banco de dados" de memes. Adicione quantos IDs de vídeos do YouTube você quiser aqui!
-const memeVideoIds = [
-    'j5a0jTc9S10', // Calma, Calabreso
-    'M1p52z6XEmI', // Bora, Bill!
-    'jGrGN7D22jU', // Caneta Azul
-    'KOLFbM9v6gA', // Valeu, Natalina!
-    'videoseries?list=PL3-s5nJ9_1N2Mh_gSbt23lk6_o2f4j24e' // Tapa na goxtosa
-    // Adicione mais IDs aqui, separados por vírgula
+// 2. Nosso novo banco de dados com os links completos
+const memeLinks = [
+    'https://www.youtube.com/watch?v=j5a0jTc9S10',
+    'https://www.youtube.com/watch?v=H72CKUZMF9o',
+    'https://www.youtube.com/watch?v=JYgZc4MsLjE',
+    'https://www.youtube.com/watch?v=SRmKWApTDqc',
+    'https://www.youtube.com/watch?v=-CtOOVsEwss'
+    // Adicione mais links completos aqui!
 ];
 
-// 3. Adiciona a função de clique para o botão da roleta
+// 3. A "Função Mágica" que extrai o ID de qualquer link do YouTube
+function extrairIdDoYoutube(url) {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/|youtube\.com\/shorts\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+}
+
+// 4. A nova lógica para o botão da roleta
 btnRoletaMeme.addEventListener('click', () => {
-    // Sorteia um ID aleatório da nossa lista
-    const idSorteado = memeVideoIds[Math.floor(Math.random() * memeVideoIds.length)];
+    // Sorteia um LINK completo da nossa lista
+    const linkSorteado = memeLinks[Math.floor(Math.random() * memeLinks.length)];
 
-    // Constrói a nova URL do vídeo para tocar automaticamente
-    const novaUrl = `https://www.youtube.com/embed/$${idSorteado}?autoplay=1`;
+    // Usa nossa função mágica para extrair apenas o ID do vídeo
+    const videoId = extrairIdDoYoutube(linkSorteado);
 
-    // Atualiza o player do YouTube com o vídeo sorteado
-    youtubePlayer.src = novaUrl;
+    // Se um ID válido foi encontrado, atualiza o player
+    if (videoId) {
+        const novaUrl = `https://www.youtube.com/embed/$${videoId}?autoplay=1`;
+        youtubePlayer.src = novaUrl;
+    } else {
+        console.error("Não foi possível extrair o ID do vídeo do link:", linkSorteado);
+        // Opcional: você pode mostrar uma mensagem de erro para a Lari aqui se quiser.
+    }
 });
 
 // --- Fim da Seção para Substituir ---
