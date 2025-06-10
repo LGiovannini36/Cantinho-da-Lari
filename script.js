@@ -207,6 +207,7 @@ window.addEventListener('DOMContentLoaded', () => {
         'https://youtu.be/2xc45CGDHDw?si=IxjS6TPyZHlWZQ5X',
         'https://youtu.be/hynijdbVjEg?si=VD0haLRPhQ0QFRD4',
         'https://youtu.be/VjuSkj6Cr-Y?si=rAMgog8uSPM-zIPW',
+        'https://youtu.be/Kz2WjqV9Dc8?si=shCXikDtaKeJwubX',
         'https://youtu.be/Cd5dvwhxxKk?si=W8sGn-TN5hSCZIi5',
         'https://youtu.be/9Bg75kT_tCw?si=qL1yThQ8kkNsOjkC',
         'https://youtu.be/L93v779k3bg?si=1SZparLovftJiK-E',
