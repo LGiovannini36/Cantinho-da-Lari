@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Atualize a linha abaixo com o endereço correto do sitemap assim que ele estiver disponível.
+# Sitemap: https://cantinho-da-lari.netlify.app/sitemap.xml

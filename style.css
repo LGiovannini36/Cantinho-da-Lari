@@ -410,6 +410,61 @@ html {
     transition: all 0.2s ease-in-out;
 }
 
+/* --- ESTILOS PARA O SECRETNOTE --- */
+#cantinho-secret-note textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.secret-note-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--cor-principal);
+    border: 2px solid var(--cor-principal);
+}
+
+.btn-outline:hover {
+    background-color: var(--cor-principal);
+    color: #fff;
+}
+
+.secret-note-display {
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: var(--borda-radius);
+    border: 1px dashed #fde7f3;
+    background: rgba(255, 249, 251, 0.8);
+    min-height: 60px;
+    font-weight: 600;
+    filter: blur(7px);
+    transition: filter 0.4s ease, background 0.3s ease;
+}
+
+.secret-note-display.has-note {
+    background: rgba(255, 249, 251, 0.95);
+}
+
+.secret-note-display.reveal {
+    filter: none;
+}
+
+.secret-note-display:not(.has-note) {
+    filter: none;
+    font-style: italic;
+    color: #777;
+}
+
+#secret-note-feedback {
+    min-height: 20px;
+}
+
 .nav-button:hover {
     background-color: var(--cor-principal);
     color: white;
