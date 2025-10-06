@@ -8,19 +8,151 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     // --- SEÇÃO DO CONTADOR DE DIAS ---
-    const dataInicio = new Date(2024, 9, 24); // 24 de Outubro de 2024 (mês 9 é Outubro)
-    const hoje = new Date();
-    const diferencaEmMilissegundos = hoje - dataInicio;
-    const umDiaEmMilissegundos = 1000 * 60 * 60 * 24;
-    const diasPassados = Math.floor(diferencaEmMilissegundos / umDiaEmMilissegundos);
-    contadorEl.textContent = `Já se passaram ${diasPassados} dias desde nosso comecinho ❤️`;
+    const MS_POR_SEGUNDO = 1000;
+    const MS_POR_MINUTO = MS_POR_SEGUNDO * 60;
+    const MS_POR_HORA = MS_POR_MINUTO * 60;
+    const umDiaEmMilissegundos = MS_POR_HORA * 24;
+    const dataInicio = new Date(2024, 9, 24, 0, 0, 0); // 24 de Outubro de 2024 (mês 9 é Outubro)
+
+    const atualizarContador = () => {
+        if (!contadorEl) {
+            return;
+        }
+
+        const agora = new Date();
+        let diferencaEmMilissegundos = agora - dataInicio;
+        const eventoNoPassado = diferencaEmMilissegundos >= 0;
+        diferencaEmMilissegundos = Math.abs(diferencaEmMilissegundos);
+
+        const dias = Math.floor(diferencaEmMilissegundos / umDiaEmMilissegundos);
+        let restante = diferencaEmMilissegundos % umDiaEmMilissegundos;
+        const horas = Math.floor(restante / MS_POR_HORA);
+        restante %= MS_POR_HORA;
+        const minutos = Math.floor(restante / MS_POR_MINUTO);
+        restante %= MS_POR_MINUTO;
+        const segundos = Math.floor(restante / MS_POR_SEGUNDO);
+
+        const unidades = [
+            { valor: dias, singular: 'dia', plural: 'dias' },
+            { valor: horas, singular: 'hora', plural: 'horas' },
+            { valor: minutos, singular: 'minuto', plural: 'minutos' },
+            { valor: segundos, singular: 'segundo', plural: 'segundos' }
+        ];
+
+        const partes = unidades
+            .filter((unidade, index) => unidade.valor > 0 || index === unidades.length - 1)
+            .map(unidade => {
+                const { valor, singular, plural } = unidade;
+                const textoUnidade = valor === 1 ? singular : plural;
+                return `${valor} ${textoUnidade}`;
+            });
+
+        let tempoFormatado = partes.join(', ');
+        if (partes.length > 1) {
+            const ultimaParte = partes.pop();
+            tempoFormatado = `${partes.join(', ')} e ${ultimaParte}`;
+        }
+
+        contadorEl.textContent = eventoNoPassado
+            ? `Já se passaram ${tempoFormatado} desde 24/10/2024 ❤️`
+            : `Faltam ${tempoFormatado} para 24/10/2024 ❤️`;
+    };
+
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
 
 
     // --- SEÇÃO DA FRASE DO DIA ---
+    const hoje = new Date();
     const frases = ["Às vezes, de longe parece que as coisas estão ruins, mas vendo de perto, parece que estão longe.", "Malandro é o gato, que já nasce de bigode.", "Em terra de saci, qualquer chute é uma voadora.", "A vida é como um sanduíche: o recheio é você quem escolhe.", "Se a vida te der limões, procure quem tem uma cachaça e um açúcar.", "Não sou o Google, mas em você eu encontro tudo que procuro.", "O importante não é saber, mas ter o telefone de quem sabe.", "Quem ri por último, não entendeu a piada.", "A pressa é a inimiga da refeição.", "Fui fazer o Enem e descobri que meu forte é interpretação de boleto.", "Malandro mesmo é o pato, que já nasce com os dedo colado pra não usar aliança.", "Se tudo na vida é passageiro, eu sou o cobrador.", "O futuro a Deus pertence, e a fatura do cartão a mim.", "Água mole em pedra dura, tanto bate até que... molha tudo.", "Não leve a vida tão a sério, afinal, você não vai sair vivo dela.", "Quem com ferro fere, não sabe a dor que eu sinto.", "Só não compro uma Ferrari porque não gosto da cor.", "Errar é humano, colocar a culpa nos outros é estratégia.", "O trabalho dignifica o homem, mas o cansaço que dá é uma vergonha.", "Deus ajuda quem cedo madruga, mas quem tarde madruga já pega o café pronto.", "Mais vale um pássaro na mão do que... ué, cadê meu relógio?", "A esperança é a última que morre, mas a minha paciência já foi faz tempo.", "Quem tem boca vai a Roma. Quem tem grana vai pra onde quiser.", "Não sou vidente, mas prevejo que amanhã é outro dia.", "A beleza interior é importante, mas uma chapinha também ajuda.", "Se o amor é cego, o negócio é apalpar.", "Se ferradura desse sorte, burro não puxava carroça.", "Quem cedo madruga, fica com sono o dia todo.", "Malandro é o goleiro, que joga onde os outros só trabalham.", "Depois da tempestade, vem a conta da reforma do telhado.", "Haverá um dia em que os robôs serão tão inteligentes que poderão nos dominar. Mas não hoje. Hoje eles só aspiram o chão.", "Em briga de saci, uma rasteira derruba.", "Se te jogarem pedras, construa um muro e venda os tijolos.", "A voz do povo é a voz de Deus, mas o povo anda muito desafinado.", "A vida te derruba, mas você pode escolher se levanta ou se tira um cochilo.", "Para que levar a vida a sério, se nós nascemos de uma gozada?", "Se conselho fosse bom, não se dava, se vendia. E o meu estaria em promoção.", "A fé move montanhas, mas eu prefiro usar um trator.", "Quem não tem cão, caça com... o vizinho reclamando do barulho.", "Diga-me com quem andas e eu te direi se vou junto.", "Se a montanha não vem a Maomé, Maomé pede um iFood.", "Eu não tenho problema com a segunda-feira, meu problema é com o trabalho.", "A mente é como um paraquedas, só funciona se estiver aberta.", "Quem espera sempre alcança, mas geralmente chega atrasado.", "Onde há fumaça, há... um churrasco começando.", "Se a vida é uma festa, eu nasci na cozinha lavando a louça.", "Roupa suja se lava em casa. A minha eu levo na lavanderia.", "Um dia a gente ri, no outro a gente é o meme.", "Não deixe para amanhã o que você pode deixar pra lá de vez.", "A diferença entre a genialidade e a estupidez é que a genialidade tem seus limites.", "Eu queria ser uma abelha, pra te dar uma ferroada no coração.", "Quem planta vento, colhe uma rinite alérgica.", "Se Maomé não vai à montanha, é porque a passagem de avião está muito cara.", "Gentileza gera gentileza, e um PIX também.", "De grão em grão, a galinha enche o papo e eu encho meu bucho.", "Quem não chora não mama, e quem chora demais já é adulto.", "Filho de peixe, peixinho é. A não ser que seja o Aquaman.", "Crie uma cobra e ela te picará. Crie um humano e ele... bom, ele também.", "Por trás de um grande homem, sempre há uma mulher surpresa.", "Quem cala consente, ou tá só esperando a vez de falar."];
     const diaDoAno = Math.floor((hoje - new Date(hoje.getFullYear(), 0, 0)) / umDiaEmMilissegundos);
     const indiceDiario = diaDoAno % frases.length;
     document.getElementById('frase-do-dia-texto').textContent = frases[indiceDiario];
+
+
+    // --- SEÇÃO DO SECRETNOTE ---
+    const secretNoteTextarea = document.getElementById('secret-note-textarea');
+    const secretNoteSaveBtn = document.getElementById('secret-note-save');
+    const secretNoteClearBtn = document.getElementById('secret-note-clear');
+    const secretNoteRevealBtn = document.getElementById('secret-note-reveal');
+    const secretNoteDisplay = document.getElementById('secret-note-display');
+    const secretNoteFeedback = document.getElementById('secret-note-feedback');
+
+    if (
+        secretNoteTextarea &&
+        secretNoteSaveBtn &&
+        secretNoteClearBtn &&
+        secretNoteRevealBtn &&
+        secretNoteDisplay &&
+        secretNoteFeedback
+    ) {
+        const SECRET_NOTE_KEY = 'cantinho-da-lari-secret-note';
+        let estaRevelado = false;
+
+        const sincronizarBotaoRevelar = () => {
+            secretNoteRevealBtn.textContent = estaRevelado ? 'Esconder segredinho' : 'Mostrar segredinho';
+            secretNoteRevealBtn.setAttribute('aria-pressed', estaRevelado.toString());
+        };
+
+        const atualizarSecretNoteDisplay = (manterRevelado = false) => {
+            const notaGuardada = localStorage.getItem(SECRET_NOTE_KEY);
+
+            if (!notaGuardada) {
+                secretNoteDisplay.textContent = 'Nenhum segredinho guardado ainda. Escreva algo fofo e clique em guardar!';
+                secretNoteDisplay.classList.remove('has-note', 'reveal');
+                secretNoteRevealBtn.disabled = true;
+                estaRevelado = false;
+                sincronizarBotaoRevelar();
+                return;
+            }
+
+            secretNoteDisplay.textContent = notaGuardada;
+            secretNoteDisplay.classList.add('has-note');
+            secretNoteRevealBtn.disabled = false;
+
+            if (manterRevelado) {
+                estaRevelado = true;
+            }
+
+            secretNoteDisplay.classList.toggle('reveal', estaRevelado);
+            sincronizarBotaoRevelar();
+        };
+
+        secretNoteSaveBtn.addEventListener('click', () => {
+            const conteudo = secretNoteTextarea.value.trim();
+
+            if (!conteudo) {
+                secretNoteFeedback.textContent = 'Escreva um segredinho antes de guardar. 😊';
+                return;
+            }
+
+            localStorage.setItem(SECRET_NOTE_KEY, conteudo);
+            secretNoteTextarea.value = '';
+            estaRevelado = true;
+            secretNoteFeedback.textContent = 'Segredinho guardado com carinho! 💌';
+            atualizarSecretNoteDisplay(true);
+        });
+
+        secretNoteClearBtn.addEventListener('click', () => {
+            localStorage.removeItem(SECRET_NOTE_KEY);
+            secretNoteTextarea.value = '';
+            secretNoteFeedback.textContent = 'Segredinho apagado. Quando quiser, escreva outro! ✨';
+            estaRevelado = false;
+            atualizarSecretNoteDisplay();
+        });
+
+        secretNoteRevealBtn.addEventListener('click', () => {
+            if (secretNoteRevealBtn.disabled) {
+                return;
+            }
+
+            estaRevelado = !estaRevelado;
+            secretNoteDisplay.classList.toggle('reveal', estaRevelado);
+            sincronizarBotaoRevelar();
+        });
+
+        atualizarSecretNoteDisplay();
+    }
 
 
     // --- FUNÇÃO REUTILIZÁVEL PARA ENVIAR NOTIFICAÇÕES ---

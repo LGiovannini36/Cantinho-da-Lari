@@ -1,4 +1,11 @@
 {
+  "name": "cantinho-da-lari",
+  "version": "1.0.0",
+  "description": "Site especial cheio de carinho para o Cantinho da Lari",
+  "scripts": {
+    "lint": "node --check script.js",
+    "test": "npm run lint"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "@supabase/supabase-js": "^2.50.0"

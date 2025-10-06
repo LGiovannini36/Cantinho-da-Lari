@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cantinho da Lari é um espaço cheio de carinho com lembretes, memórias, música e mensagens especiais criadas sob medida para ela.">
+    <meta name="keywords" content="Cantinho da Lari, amor, lembretes, frases do dia, cantinho especial">
+    <meta name="author" content="Cantinho da Lari">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#d63384">
+    <link rel="canonical" href="https://cantinho-da-lari.netlify.app/">
+    <meta property="og:title" content="Cantinho da Lari">
+    <meta property="og:description" content="Um espaço carinhoso com surpresas, memórias e declarações feitas para a Lari.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cantinho-da-lari.netlify.app/">
+    <meta property="og:image" content="https://cantinho-da-lari.netlify.app/larissa.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cantinho da Lari">
+    <meta name="twitter:description" content="Um cantinho inteiro dedicado a cuidar, mimar e surpreender a Lari.">
+    <meta name="twitter:image" content="https://cantinho-da-lari.netlify.app/larissa.png">
     <title>Cantinho da Lari</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,6 +48,7 @@
     <a href="#cantinho-lembrancas" class="nav-button">Lembranças</a>
     <a href="#cantinho-coisometro" class="nav-button">Coisômetro</a>
     <a href="#cantinho-musical" class="nav-button">Músicas</a>
+    <a href="#cantinho-secret-note" class="nav-button">Segredinhos</a>
     <a href="#cantinho-aleatoriedade" class="nav-button">Aleatoriedade</a>
     <a href="#cantinho-memes" class="nav-button">Memes</a>
 </nav>
@@ -113,10 +130,27 @@
         <button id="play-porta-retrato" class="btn-play-heart" aria-label="Tocar Porta Retrato">❤️</button>
     </div>
 </div>
-<!-- Botão Voltar ao Topo -->
-<a href="#topo" class="btn-voltar-topo" aria-label="Voltar ao topo">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-</a>
+            <!-- Botão Voltar ao Topo -->
+            <a href="#topo" class="btn-voltar-topo" aria-label="Voltar ao topo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            </a>
+            </section>
+
+            <section class="card" id="cantinho-secret-note">
+                <h2>🔐 SecretNote 🔐</h2>
+                <p>Guarde aqui um bilhetinho secreto só seu. Quando a saudade apertar, é só abrir e reler com calma.</p>
+                <textarea id="secret-note-textarea" placeholder="Escreva seu segredinho mais doce aqui..."></textarea>
+                <div class="secret-note-actions">
+                    <button id="secret-note-save" class="btn">Guardar segredinho</button>
+                    <button id="secret-note-clear" class="btn btn-outline">Apagar tudo</button>
+                    <button id="secret-note-reveal" class="btn btn-positivo" aria-pressed="false">Mostrar segredinho</button>
+                </div>
+                <div id="secret-note-display" class="secret-note-display" aria-live="polite"></div>
+                <p id="secret-note-feedback" class="feedback-final" aria-live="polite"></p>
+                <!-- Botão Voltar ao Topo -->
+                <a href="#topo" class="btn-voltar-topo" aria-label="Voltar ao topo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+                </a>
             </section>
             <section class="card" id="cantinho-aleatoriedade">
     <h2>🎲 Cantinho da aLARIeatoriedade 🎲</h2>
